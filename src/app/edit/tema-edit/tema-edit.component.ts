@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment.prod';
 export class TemaEditComponent implements OnInit {
 
 tema: Tema = new Tema()
+idTema:number
 
   constructor(
     private temaService: TemaService,
@@ -28,6 +29,7 @@ tema: Tema = new Tema()
     let id = this.route.snapshot.params['id']
     this.findByIdTema(id)
     console.log(id)
+    this.idTema = id
   }
 
   findByIdTema(id:number){
@@ -37,6 +39,8 @@ tema: Tema = new Tema()
   }
 
   atualizar(){
+    this.tema.id = this.idTema
+
     this.temaService.putTema(this.tema).subscribe((resp: Tema)=>{
       this.tema = resp
       alert('Tema atualizado com sucesso!')
