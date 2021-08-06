@@ -34,7 +34,9 @@ export class InicioComponent implements OnInit {
 
   ngOnInit() {
 
-    if(environment.token == ''){
+    window.scroll(0, 0)
+
+    if (environment.token == '') {
       this.router.navigate(['/entrar'])
     }
 
@@ -43,31 +45,31 @@ export class InicioComponent implements OnInit {
     this.findByIdUser()
   }
 
-  getAllTemas(){
+  getAllTemas() {
     this.temaService.getAllTema().subscribe((resp: Tema[]) => {
       this.listaTemas = resp
     })
   }
 
-  findByIdTema(){
-    this.temaService.getByIdTema(this.idTema).subscribe((resp: Tema) =>{
+  findByIdTema() {
+    this.temaService.getByIdTema(this.idTema).subscribe((resp: Tema) => {
       this.tema = resp
     })
   }
 
-  getAllPostagens(){
+  getAllPostagens() {
     this.postagemService.getAllPostagens().subscribe((resp: Postagem[]) => {
       this.listaPostagens = resp
     })
   }
 
-  findByIdUser(){
+  findByIdUser() {
     this.postagemService.getByIdUser(this.idUser).subscribe((resp: User) => {
       this.user = resp
     })
   }
 
-  publicar(){
+  publicar() {
     this.tema.id = this.idTema
     this.postagem.tema = this.tema
 
