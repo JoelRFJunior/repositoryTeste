@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/model/User';
 import { AuthService } from 'src/app/service/auth.service';
+import { PostagemService } from 'src/app/service/postagem.service';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
@@ -20,7 +21,8 @@ export class UserEditComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private postagemService: PostagemService
   ) { }
 
   ngOnInit() {
@@ -63,7 +65,7 @@ export class UserEditComponent implements OnInit {
   }
 
   findByIdUser(id: number) {
-    this.authService.getByIdUser(id).subscribe((resp: User) => {
+    this.postagemService.getByIdUser(id).subscribe((resp: User) => {
       this.user = resp
     })
   }
